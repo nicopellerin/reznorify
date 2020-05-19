@@ -57,11 +57,9 @@ impl Plugin for Reznorify {
             for (input_sample, output_sample) in input_buffer.iter().zip(output_buffer) {
 
                 if *input_sample >= 0.0 {
-                    *output_sample = input_sample.min(threshold) / threshold;
-                    *output_sample = input_sample * gain;
+                    *output_sample = input_sample.min(threshold) / threshold * gain;
                 } else {
-                    *output_sample = input_sample.max(-threshold) / threshold;
-                    *output_sample = input_sample * gain;
+                    *output_sample = input_sample.max(-threshold) / threshold * gain;
                 }
             }
         }
